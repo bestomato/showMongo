@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="googlebot" content="noimageindex">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+    <link rel="shortcut icon" href="{{ static_url('img/logo.ico') }}" type="image/x-icon">
+    <link href="{{ static_url('css/pure-min.css') }}" rel="stylesheet" >
+    <link href="{{ static_url('css/bo.css') }}" rel="stylesheet" >
+    <link href="{{ static_url('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" >
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="{{ static_url('css/side-menu-old-ie.css') }}">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{{ static_url('css/side-menu.css') }}">
+    <!--<![endif]-->
+
+    <title>index</title>
+
+    {% block head %}
+    {% end %}
+
+</head>
+<body>
+
+    <div id="layout">
+        <div id="menu">
+            <div class="pure-menu pure-menu-open">
+                <a class="pure-menu-heading" href="#">BO-CMS</a>
+
+                <ul>
+                    <li>
+                        <a href="/">Layouts</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/up' %} pure-menu-selected {% end %} ">
+                        <a href="/user/up">用户统计</a>
+                    </li>
+
+                    <li class="menu-item-divided">
+                        <a href="/">Base</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+
+                {% block body %}
+
+                {% end %}
+
+        </div>
+    </div>
+
+    <script src="{{ static_url('js/ui.js', v=1) }}" ></script>
+    <script src="{{ static_url('js/jquery-1.9.1.min.js', v=1) }}" ></script>
+    <script src="{{ static_url('js/sweet-alert.min.js') }}"></script>
+    <script src="{{ static_url('js/bo.min.js') }}" ></script>
+
+{% block script %}
+{% end %}
+
+</body>
+</html>
