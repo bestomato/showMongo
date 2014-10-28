@@ -3,7 +3,6 @@
 # installed app list 
 INSTALLED_APPS = (
     'home',
-    'user',
 )
 
 #  static file config
@@ -16,13 +15,6 @@ INSTALLED_APPS = (
 #          static url is maked by application settings static_path
 CDN = {
     'is': False,
-    'host': 'http://s.androidesk.com/aoi'
+    'host': ''
 }
 
-
-# response code reflect response result after server process request  
-#
-#
-#
-#
-#

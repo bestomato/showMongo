@@ -9,15 +9,9 @@
 
     <link rel="shortcut icon" href="{{ static_url('img/logo.ico') }}" type="image/x-icon">
     <link href="{{ static_url('css/pure-min.css') }}" rel="stylesheet" >
-    <link href="{{ static_url('css/bo.css') }}" rel="stylesheet" >
-    <link href="{{ static_url('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" >
-
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="{{ static_url('css/side-menu-old-ie.css') }}">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="{{ static_url('css/side-menu.css') }}">
-    <!--<![endif]-->
+    <link href="{{ static_url('css/show.css') }}" rel="stylesheet" >
+    <!--<link href="{{ static_url('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" >-->
+    <link rel="stylesheet" href="{{ static_url('css/side-menu.css') }}">
 
     <title>index</title>
 
@@ -33,16 +27,49 @@
                 <a class="pure-menu-heading" href="#">BO-CMS</a>
 
                 <ul>
-                    <li>
-                        <a href="/">Layouts</a>
+
+                    <li class=" {% if nowurl == '/' %} pure-menu-selected {% end %} ">
+                        <a href="/">概况</a>
                     </li>
 
-                    <li class=" {% if nowurl == '/user/up' %} pure-menu-selected {% end %} ">
-                        <a href="/user/up">用户统计</a>
+                    <li class=" {% if nowurl == '/user/num' %} pure-menu-selected {% end %} ">
+                        <a href="/user/num">用户</a>
                     </li>
 
-                    <li class="menu-item-divided">
-                        <a href="/">Base</a>
+                    <li class=" {% if nowurl == '/user/active/day' %} pure-menu-selected {% end %} menu-item-divided">
+                        <a href="/user/active/day">日活跃</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/active/week' %} pure-menu-selected {% end %} ">
+                        <a href="/user/active/week">周活跃</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/active/moon' %} pure-menu-selected {% end %} ">
+                        <a href="/user/active/moon">月活跃</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/attribute' %} pure-menu-selected {% end %} menu-item-divided">
+                        <a href="/user/attribute">用户属性</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/change' %} pure-menu-selected {% end %} ">
+                        <a href="/user/change">新用户转化</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/remain' %} pure-menu-selected {% end %} ">
+                        <a href="/user/remain">新用户留存</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/interact' %} pure-menu-selected {% end %} menu-item-divided">
+                        <a href="/user/interact">互动</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/evaluation' %} pure-menu-selected {% end %} ">
+                        <a href="/user/evaluation">评价</a>
+                    </li>
+
+                    <li class=" {% if nowurl == '/user/other' %} pure-menu-selected {% end %} ">
+                        <a href="/user/other">其他</a>
                     </li>
                 </ul>
             </div>
@@ -59,8 +86,8 @@
 
     <script src="{{ static_url('js/ui.js', v=1) }}" ></script>
     <script src="{{ static_url('js/jquery-1.9.1.min.js', v=1) }}" ></script>
-    <script src="{{ static_url('js/sweet-alert.min.js') }}"></script>
-    <script src="{{ static_url('js/bo.min.js') }}" ></script>
+    <!--<script src="{{ static_url('js/sweet-alert.min.js') }}"></script>-->
+    <script src="{{ static_url('js/show.min.js') }}" ></script>
 
 {% block script %}
 {% end %}

@@ -18,24 +18,9 @@ logger = loggers.getLogger(__file__)
 
 from utils import (escape as _es, httputil as _ht)
 
-from models.god import model as god_model
-
 
 class BaseBaseHandler(tornado.web.RequestHandler):
 
-    '''
-    request parameter:
-        _get_params = {
-                'need':[
-                    ('skip', int), 
-                    ('limit', int), 
-                ],
-                'option':[
-                    ('jsoncallback', basestring, None),
-                ]
-            }
-
-    '''
 
     _types = [ObjectId, None, basestring, int, float, list, file]
 

@@ -15,10 +15,10 @@ TEMPLATE_PATH = os.path.join(CUR_PATH, "templates")
 STATIC_PATH = os.path.join(CUR_PATH, "static")
 
 # app name
-APP_NAME = 'petta-tj'
+APP_NAME = 'slog'
 
 # server name this name is equal sever dir name
-SERVER_NAME = 'petta-tj'
+SERVER_NAME = 'slog'
 
 if os.path.exists(os.path.join(CUR_PATH, '__test__')):
     DEBUG = True
