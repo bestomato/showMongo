@@ -11,11 +11,11 @@ import loggers
 
 from utils import escape as _es 
 
-logger = loggers.getLogger(__file__)
+# logger = loggers.getLogger(__file__)
 
 class Record(dict):
     """a dict object to replace default mongodb record
-    
+
     """
     def __init__(self, record, *args, **kwargs):
         super(Record, self).__init__(*args, **kwargs)
@@ -44,6 +44,7 @@ def convert_to_record(func):
     return wrapper
 
 
+
 class BaseBaseModel(object):
     """mongodb 基础api 访问
     
@@ -59,9 +60,7 @@ class BaseBaseModel(object):
 
         # databases
         self.__db = _MONGO_DB_MAPPING['db']
-        # datebases file
-        self.__db_file = _MONGO_DB_MAPPING['db_file']
-        
+
         #databse name
         if db_name not in self.__db or self.__db.get(db_name, None) is None:
             raise Exception("%s is invalid databse" % db_name)
@@ -79,11 +78,6 @@ class BaseBaseModel(object):
         if self.__collect is None:
             raise Exception("%s is invalid collection" % self.name)
 
-        # gridfs as private variable
-        self.__gridfs = self.__db_file.get(db_name, None)
-        if self.__gridfs is None:
-            pass
-            #logger.info("%s is invalid gridfs" % self.__gridfs)
 
     def __setitem__(self, k, v):
         setattr(self, k, v)

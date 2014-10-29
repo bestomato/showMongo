@@ -172,9 +172,14 @@ class BaseHandler(BaseBaseHandler):
     IMG_WIDTH = 598
     IMG_HEIGHT = 598
 
+    _data_base_conn = None
+
+
     def initialize(self):
         super(BaseHandler, self).initialize()
         self._params = self.parameter
+
+        self.get_server_database()
     
     def get_context(self):
         context = super(BaseHandler, self).get_context()
@@ -254,5 +259,9 @@ class BaseHandler(BaseBaseHandler):
 
     def get_server_database(self):
 
+        from db import dbc as MongoDBConn
+        dbconn = MongoDBConn.DBConn()
 
-        return
+        #建立连接
+        dbconn.connect()
+        self._data_base_conn = dbconn.getConn()

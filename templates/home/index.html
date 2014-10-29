@@ -48,17 +48,17 @@
                 </thead>
 
                 <tbody>
-
+                    {% for i in data%}
                     <tr>
-                        <td>星</td>
-                        <td>星</td>
-                        <td>星</td>
-                        <td>星</td>
-                        <td>星</td>
+                        <td>{{ i }}</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
                         <td>1</td>
                         <td> %</td>
                     </tr>
-
+                    {% end %}
                 </tbody>
             </table>
         </div>
