@@ -8,7 +8,17 @@
         <form class="pure-form m-header-form" method="post" action="">
             <fieldset>
                 <legend>
-                    <span id="header-title">概况</span>
+                    <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                        <ul>
+                            <li><a href="#">服务器</a></li>
+                            <li><a href="#">状态</a></li>
+                            <li class="pure-menu-selected"><a href="#">数据库</a></li>
+                            <li><a href="#">进程</a></li>
+                            <li><a href="#">命令</a></li>
+                            <li><a href="#">代码执行</a></li>
+                            <li><a href="#">主从</a></li>
+                        </ul>
+                    </div>
                 </legend>
             </fieldset>
         </form>
@@ -18,14 +28,39 @@
 <div class="pure-g" >
     <div class="pure-u-1-1" >
         <div>
-            <p class="content-title-font">
-                总数：
-            </p>
-            <p>
-                <a href="/user/num">
-                    <button type="button" class="pure-button  button-small">详细</button>
+            <p class="van-open-yes">
+                <a href="">
+                    <button type="button" class="pure-button button-secondary button-small">创建数据库</button>
                 </a>
             </p>
+
+            <table class="pure-table  pure-table-bordered van-float">
+                <thead>
+                    <tr>
+                        <th>名称</th>
+                        <th>大小</th>
+                        <th>存储容量</th>
+                        <th>数据大小</th>
+                        <th>索引的大小</th>
+                        <th>收藏</th>
+                        <th>对象</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>星</td>
+                        <td>星</td>
+                        <td>星</td>
+                        <td>星</td>
+                        <td>星</td>
+                        <td>1</td>
+                        <td> %</td>
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

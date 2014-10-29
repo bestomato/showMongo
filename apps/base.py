@@ -14,7 +14,7 @@ from bson.objectid import ObjectId
 from settings import CDN as _CDN
 import loggers
 
-logger = loggers.getLogger(__file__)
+# logger = loggers.getLogger(__file__)
 
 from utils import (escape as _es, httputil as _ht)
 
@@ -250,15 +250,9 @@ class BaseHandler(BaseBaseHandler):
         html = outStr + liStr + outStr2
         return html
 
+##########################################################################
 
-class ListBaseHandler(BaseHandler):
+    def get_server_database(self):
 
-    def initialize(self):
-        super(ListBaseHandler, self).initialize()
-        self._page = 1
-    
-    def prepare(self):
-        super(ListBaseHandler, self).prepare()
-        self._page = abs(self._params['page']) if self._params.get('page', None) else 1
-        self._max_code = self.get_argument('max_code', None)
-        path = self.request.path
+
+        return

@@ -16,7 +16,7 @@ from apps import urlpatterns
 
 define("port", default=8888, type=int)
 
-logger = logging.getLogger()
+# logger = logging.getLogger()
 
 class ErrorHandler(tornado.web.RequestHandler):
 

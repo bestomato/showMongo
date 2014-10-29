@@ -20,6 +20,7 @@ APP_NAME = 'slog'
 # server name this name is equal sever dir name
 SERVER_NAME = 'slog'
 
+DEBUG = True
 if os.path.exists(os.path.join(CUR_PATH, '__test__')):
     DEBUG = True
 

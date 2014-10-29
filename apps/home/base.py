@@ -10,9 +10,3 @@ class BaseHandler(base.BaseHandler):
         super(BaseHandler,self).initialize()
         self.template_path = _TEMPLATE_PATH
 
-
-class ListBaseHandler(base.ListBaseHandler):
-
-    def initialize(self):
-        super(ListBaseHandler, self).initialize()
-        self.template_path = _TEMPLATE_PATH
