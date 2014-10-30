@@ -1,81 +1,20 @@
-{% extends "../public/base.html" %}
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="{{ static_url('img/logo.ico') }}" type="image/x-icon">
+    <title>show mongo</title>
+</head>
 
-{% block body %}
+<frameset cols="15%,85%">
 
- <div class="pure-g" >
-     <div class="pure-u-1-1" >
-
-        <form class="pure-form m-header-form" method="post" action="">
-            <fieldset>
-                <legend>
-                    <div class="pure-menu pure-menu-open pure-menu-horizontal">
-                        <ul>
-                            <li><a href="#">服务器</a></li>
-                            <li><a href="#">状态</a></li>
-                            <li class="pure-menu-selected"><a href="#">数据库</a></li>
-                            <li><a href="#">进程</a></li>
-                            <li><a href="#">命令</a></li>
-                            <li><a href="#">代码执行</a></li>
-                            <li><a href="#">主从</a></li>
-                        </ul>
-                    </div>
-                </legend>
-            </fieldset>
-        </form>
-     </div>
- </div>
-
-<div class="pure-g" >
-    <div class="pure-u-1-1" >
-        <div>
-            <p class="van-open-yes">
-                <a href="">
-                    <button type="button" class="pure-button button-secondary button-small">创建数据库</button>
-                </a>
-            </p>
-
-            <table class="pure-table  pure-table-bordered van-float">
-                <thead>
-                    <tr>
-                        <th>名称</th>
-                        <th>大小</th>
-                        <th>存储容量</th>
-                        <th>数据大小</th>
-                        <th>索引的大小</th>
-                        <th>收藏</th>
-                        <th>对象</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for i in data%}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td> %</td>
-                    </tr>
-                    {% end %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+    <frame src="/home/left" frameborder="0">
+    </frame>
 
 
+    <frame src="/home/dbs" frameborder="0" name="right">
+    </frame>
 
-    <button style="margin-top:200px;" class="button-success pure-button">Success Button</button>
-    <button class="button-error pure-button">Error Button</button>
-    <button class="button-warning pure-button">Warning Button</button>
-    <button class="button-secondary pure-button">Secondary Button</button>
-    <button class="pure-button pure-button-active">刷新数据</button>
-    <br/>
-    <button class="button-xsmall pure-button">Extra Small Button</button>
-    <button class="button-small pure-button">Small Button</button>
-    <button class="pure-button">Regular Button</button>
-    <button class="button-large pure-button">Large Button</button>
-    <button class="button-xlarge pure-button">Extra Large Button</button>
-{% end %}
+</frameset>
+
+</html>

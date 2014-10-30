@@ -2,19 +2,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="googlebot" content="noimageindex">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-
-    <link rel="shortcut icon" href="{{ static_url('img/logo.ico') }}" type="image/x-icon">
     <link href="{{ static_url('css/pure-min.css') }}" rel="stylesheet" >
-    <link rel="stylesheet" href="{{ static_url('css/side-menu.css') }}">
     <link href="{{ static_url('css/show.css') }}" rel="stylesheet" >
     <!--<link href="{{ static_url('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" >-->
 
-
-    <title>ShowMongo</title>
+    <title>Show Mongo</title>
 
     {% block head %}
     {% end %}
@@ -23,58 +15,22 @@
 <body>
 
     <div id="layout">
-        <div id="menu">
-            <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading" href="#">
-                    ShowMongo
-                </a>
+        <div>
+            {% block menu %}
 
-                <ul>
-
-                    <li>
-                        <a href="/" class="menu-item-divided">admin1</a>
-                    </li>
-
-                    {% for i in leftmenu %}
-                        <li class="van-db menu-item-divided">
-                            <a href="javascript:;">{{ i['name'] }} ({{ i['count'] }})</a>
-                        </li>
-                        <li class="van-db-table">
-                            {% for l in i['last'] %}
-                                <a class="" href="/">
-                                    <span>{{ l }}</span>
-                                </a>
-                            {% end %}
-                        </li>
-                    {% end %}
-
-
-                </ul>
-            </div>
+            {% end %}
         </div>
 
         <div id="main">
+            {% block main %}
 
-                {% block body %}
-
-                {% end %}
-
+            {% end %}
         </div>
     </div>
 
-    <script src="{{ static_url('js/ui.js', v=1) }}" ></script>
     <script src="{{ static_url('js/jquery-1.9.1.min.js', v=1) }}" ></script>
     <!--<script src="{{ static_url('js/sweet-alert.min.js') }}"></script>-->
     <script src="{{ static_url('js/show.min.js') }}" ></script>
-    <script>
-        var db=$(".van-db")
-        db.on("click", function(){
-            //db.next("li").toggle("fast");
-            $(this).next("li").toggle("fast");
-
-
-        });
-    </script>
 
 {% block script %}
 {% end %}

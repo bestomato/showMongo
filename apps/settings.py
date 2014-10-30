@@ -3,6 +3,7 @@
 # installed app list 
 INSTALLED_APPS = (
     'home',
+    'dbs',
 )
 
 #  static file config

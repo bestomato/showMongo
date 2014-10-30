@@ -6,11 +6,21 @@ from base import BaseHandler
 class HomeHandler(BaseHandler):
 
     def get(self):
-        #列出全部数据库
+        self.render('index.html')
+
+
+
+class HomeLeftHandler(BaseHandler):
+
+    def get(self):
+        self.render('../public/left.html')
+
+
+class DbListHandler(BaseHandler):
+
+    def get(self):
         data = self.get_server_database()
-
-        self.render('index.html', data=sorted(data))
-
+        self.render('dbs.html', data=sorted(data))
 
 
 
@@ -21,28 +31,11 @@ class HomeHandler(BaseHandler):
 
 
 
-class guodong(BaseHandler):
-
-    def get(self):
-
-
-        print 123
 
 
 
-class guodong1(BaseHandler):
-
-    def get(self):
-
-        self.render('kkk.html')
 
 
 
-class guodong2(BaseHandler):
-
-    def get(self):
-
-
-        self.render('kkk1.html', bianliang='woshibairui')
 
 

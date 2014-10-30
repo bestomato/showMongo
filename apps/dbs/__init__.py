@@ -2,13 +2,10 @@
 
 import app
 
-prefix = '/'
+prefix = '/dbs'
 
 urls = [
     # comments
     ('', app.HomeHandler),
-    ('home/left', app.HomeLeftHandler),
-    ('home/dbs', app.DbListHandler),
-
 
 ]
