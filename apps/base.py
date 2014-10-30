@@ -18,6 +18,11 @@ import loggers
 
 from utils import (escape as _es, httputil as _ht)
 
+from db import dbc
+
+model = dbc.BaseModel()
+
+
 
 class BaseBaseHandler(tornado.web.RequestHandler):
 
@@ -32,11 +37,14 @@ class BaseBaseHandler(tornado.web.RequestHandler):
         # app template path if exist must end with slash like user/
         self.template_path = ''
 
+        self.leftmenu = []
+
 
     def render(self, template_name, **kwargs):
         super(BaseBaseHandler, self).render(('%s%s') % (self.template_path, template_name),
             context=self.context,
             nowurl=self.request.path,
+            leftmenu=self.leftmenu,
             **kwargs)
 
     def sort_by(self, sort):
@@ -172,15 +180,11 @@ class BaseHandler(BaseBaseHandler):
     IMG_WIDTH = 598
     IMG_HEIGHT = 598
 
-    _data_base_conn = None
-
 
     def initialize(self):
         super(BaseHandler, self).initialize()
         self._params = self.parameter
 
-        self.get_server_database()
-    
     def get_context(self):
         context = super(BaseHandler, self).get_context()
         context.update({
@@ -255,13 +259,24 @@ class BaseHandler(BaseBaseHandler):
         html = outStr + liStr + outStr2
         return html
 
+    def prepare(self):
+        self.leftmenu = self.get_left_base()
+
+
 ##########################################################################
 
     def get_server_database(self):
+        return model.getDdataBaseName()
 
-        from db import dbc as MongoDBConn
-        dbconn = MongoDBConn.DBConn()
+    def get_left_base(self):
+        db = model.getDdataBaseName()
+        menu = []
+        for i in db:
+            l =  list(model.getCollectionsName(i))
+            menu.append({'name':i, 'last':sorted(l),'count':len(l)})
+        return sorted(menu)
 
-        #建立连接
-        dbconn.connect()
-        self._data_base_conn = dbconn.getConn()
+    def get_data_base_conn(self, name=''):
+        pass
+
+

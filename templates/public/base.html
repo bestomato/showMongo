@@ -9,9 +9,10 @@
 
     <link rel="shortcut icon" href="{{ static_url('img/logo.ico') }}" type="image/x-icon">
     <link href="{{ static_url('css/pure-min.css') }}" rel="stylesheet" >
+    <link rel="stylesheet" href="{{ static_url('css/side-menu.css') }}">
     <link href="{{ static_url('css/show.css') }}" rel="stylesheet" >
     <!--<link href="{{ static_url('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" >-->
-    <link rel="stylesheet" href="{{ static_url('css/side-menu.css') }}">
+
 
     <title>ShowMongo</title>
 
@@ -24,15 +25,28 @@
     <div id="layout">
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="" href="#">
+                <a class="pure-menu-heading" href="#">
                     ShowMongo
                 </a>
 
                 <ul>
 
-                    <li class=" {% if nowurl == '/' %} pure-menu-selected {% end %} ">
-                        <a href="/">概况</a>
+                    <li>
+                        <a href="/" class="menu-item-divided">admin1</a>
                     </li>
+
+                    {% for i in leftmenu %}
+                        <li class="van-db menu-item-divided">
+                            <a href="javascript:;">{{ i['name'] }} ({{ i['count'] }})</a>
+                        </li>
+                        <li class="van-db-table">
+                            {% for l in i['last'] %}
+                                <a class="" href="/">
+                                    <span>{{ l }}</span>
+                                </a>
+                            {% end %}
+                        </li>
+                    {% end %}
 
 
                 </ul>
@@ -52,6 +66,12 @@
     <script src="{{ static_url('js/jquery-1.9.1.min.js', v=1) }}" ></script>
     <!--<script src="{{ static_url('js/sweet-alert.min.js') }}"></script>-->
     <script src="{{ static_url('js/show.min.js') }}" ></script>
+    <script>
+        var db=$(".van-db")
+        db.on("click", function(){
+            db.next("li").toggle("fast");
+        });
+    </script>
 
 {% block script %}
 {% end %}
