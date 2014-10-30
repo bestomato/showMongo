@@ -11,3 +11,38 @@ class HomeHandler(BaseHandler):
 
         self.render('index.html', data=sorted(data))
 
+
+
+
+
+
+
+
+
+
+
+class guodong(BaseHandler):
+
+    def get(self):
+
+
+        print 123
+
+
+
+class guodong1(BaseHandler):
+
+    def get(self):
+
+        self.render('kkk.html')
+
+
+
+class guodong2(BaseHandler):
+
+    def get(self):
+
+
+        self.render('kkk1.html', bianliang='woshibairui')
+
+
