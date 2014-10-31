@@ -27,6 +27,8 @@ model = dbc.BaseModel()
 class BaseBaseHandler(tornado.web.RequestHandler):
 
 
+
+
     _types = [ObjectId, None, basestring, int, float, list, file]
 
 
@@ -38,7 +40,6 @@ class BaseBaseHandler(tornado.web.RequestHandler):
         self.template_path = ''
 
         self.leftmenu = []
-
 
     def render(self, template_name, **kwargs):
         super(BaseBaseHandler, self).render(('%s%s') % (self.template_path, template_name),
@@ -177,6 +178,9 @@ class BaseBaseHandler(tornado.web.RequestHandler):
 
 class BaseHandler(BaseBaseHandler):
 
+
+
+
     IMG_WIDTH = 598
     IMG_HEIGHT = 598
 
@@ -184,6 +188,9 @@ class BaseHandler(BaseBaseHandler):
     def initialize(self):
         super(BaseHandler, self).initialize()
         self._params = self.parameter
+
+        self.get_ac_conn()
+        self._coll = None
 
     def get_context(self):
         context = super(BaseHandler, self).get_context()
@@ -278,5 +285,12 @@ class BaseHandler(BaseBaseHandler):
 
     def get_data_base_conn(self, name=''):
         pass
+
+    def get_ac_conn(self):
+
+        dbname= 'petta_monitor'
+        acname= 'monitor_user'
+
+        self._coll = model.getAccount(dbname, acname)
 
 

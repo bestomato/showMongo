@@ -6,9 +6,15 @@ from base import BaseHandler
 class HomeHandler(BaseHandler):
 
     def get(self):
-        print 1
 
-        dbname = 'petta_god'
+        self.get_ac_conn()
+
+
+        row = self._coll.find()
+
+        for i in self._coll.find():
+            print i
+
 
 
         self.render('index.html')

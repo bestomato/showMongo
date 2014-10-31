@@ -10,7 +10,7 @@
 <div class="van-left" style="border:0;">
     <ul>
         <li class="van-menu-heading">
-            SHOW MONGO
+            <a href="/home/dbs" target="right">SHOW MONGO</a>
         </li>
 
         {% for i in leftmenu %}
@@ -21,7 +21,7 @@
             </li>
             <li class="van-db-table">
                 {% for l in i['last'] %}
-                    <a href="#" target="right">
+                    <a href="/coll" target="right">
                         {{ l }}
                     </a>
                 {% end %}

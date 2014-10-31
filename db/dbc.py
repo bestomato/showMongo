@@ -21,6 +21,7 @@ class BaseBaseModel(object):
 
     conn = None
     database = None
+    collection = None
     servers = "mongodb://localhost:27017"
 
     def __init__(self, db=''):
@@ -40,7 +41,9 @@ class BaseBaseModel(object):
         if name:
             self.database = self.conn[name]
 
-
+    def selectAC(self, name=''):
+        if name:
+            self.collection = self.database[name]
 
 
 
@@ -55,22 +58,22 @@ class BaseModel(BaseBaseModel):
     def getDdataBaseName(self):
         return self.conn.database_names()
 
-
-    def getDataBase(self, name=''):
-        if name:
-            self.selectDB(name)
-
-        return self.database
-
-
     def getCollectionsName(self, name=''):
         if name:
             return self.conn[name].collection_names()
 
 
-    def getAccount(self, name=''):
+    def getDataBase(self, name=''):
         if name:
-            return self.database[name]
+            self.selectDB(name)
+        return self.database
+
+    def getAccount(self, db='', ac=''):
+        if db:
+            self.selectDB(db)
+        if ac:
+            self.selectAC(ac)
+        return self.collection
 
 
 
