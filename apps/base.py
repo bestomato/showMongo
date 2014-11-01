@@ -32,19 +32,18 @@ class BaseBaseHandler(tornado.web.RequestHandler):
     _types = [ObjectId, None, basestring, int, float, list, file]
 
 
+
     def initialize(self):
         # request context
         self.context = self.get_context()
 
         # app template path if exist must end with slash like user/
         self.template_path = ''
-
         self.leftmenu = []
 
     def render(self, template_name, **kwargs):
         super(BaseBaseHandler, self).render(('%s%s') % (self.template_path, template_name),
             context=self.context,
-            nowurl=self.request.path,
             leftmenu=self.leftmenu,
             **kwargs)
 
@@ -53,10 +52,7 @@ class BaseBaseHandler(tornado.web.RequestHandler):
 
     # request context
     def get_context(self):
-        return {
-
-
-        }
+        return {}
 
     def static_url(self,  path, include_host=None, v=None, **kwargs):
         is_debug = self.application.settings.get('debug', False)
@@ -178,24 +174,35 @@ class BaseBaseHandler(tornado.web.RequestHandler):
 
 class BaseHandler(BaseBaseHandler):
 
-
+    _get_params = {
+            'option':[
+                ('db', basestring, ''),
+                ('coll', basestring, ''),
+            ]
+        }
 
 
     IMG_WIDTH = 598
     IMG_HEIGHT = 598
+
+    # 这里是成员变量定义,必须放到这个地方,继承不到
+    _db = None
+    _coll = None
 
 
     def initialize(self):
         super(BaseHandler, self).initialize()
         self._params = self.parameter
 
-        self.get_ac_conn()
-        self._coll = None
+        self.get_data_base_conn()
+        self.get_coll_conn()
 
     def get_context(self):
         context = super(BaseHandler, self).get_context()
         context.update({
             'path': self.request.path,
+            'db': self.parameter['db'],
+            'coll': self.parameter['coll'],
             })
 
         return context
@@ -262,7 +269,7 @@ class BaseHandler(BaseBaseHandler):
             else:
                 liStr += '<li><a class="pure-button" href="' + lastUrl + 'page=' + str(i) + '">' + str(i) + '</a></li>'
         liStr += '<li><a class="pure-button next" href="' + lastUrl + 'page=' + str(page+1) + '">&#187;</a></li>'
-        liStr = '<li><a class="pure-button" href="' + lastUrl + 'page=1" style="color:#999">第一页</a></li>' + liStr
+        # liStr = '<li><a class="pure-button" href="' + lastUrl + 'page=1" style="color:#999">第一页</a></li>' + liStr
         html = outStr + liStr + outStr2
         return html
 
@@ -283,14 +290,10 @@ class BaseHandler(BaseBaseHandler):
             menu.append({'name':i, 'last':sorted(l),'count':len(l)})
         return sorted(menu)
 
-    def get_data_base_conn(self, name=''):
-        pass
+    def get_data_base_conn(self):
+        self._dbs = model.getDataBase(self._params['db'])
 
-    def get_ac_conn(self):
-
-        dbname= 'petta_monitor'
-        acname= 'monitor_user'
-
-        self._coll = model.getAccount(dbname, acname)
+    def get_coll_conn(self):
+        self._coll = model.getAccount(self._params['db'], self._params['coll'])
 
 

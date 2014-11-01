@@ -18,6 +18,7 @@ class HomeLeftHandler(BaseHandler):
 
 class DbListHandler(BaseHandler):
 
+
     def get(self):
         data = self.get_server_database()
         self.render('dbs.html', data=sorted(data))

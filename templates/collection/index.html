@@ -28,11 +28,8 @@
                         </ul>
                     </div>
                 </legend>
-
-                <textarea>
-
-
-                </textarea>
+                <textarea style="height:160px;" cols="70" rows="10">{
+                }</textarea>
             </fieldset>
         </form>
      </div>
@@ -50,8 +47,86 @@
         </div>
 
         <div>
+            {{ pageHtml}}
+
+            <div class="pure-u-23-24 van-coll-table">
+                <table class="van-coll-table">
+                    <tbody>
+                        {% for i in d %}
+                        <tr>
+                            <td class="van-coll-table-td-num">#1</td>
+                            <td class="van-coll-table-td-data">
+                                <div>
+
+                                    <p class="van-coll-table-cz">
+                                        <span><a href="#">更新</a></span>
+                                        <span><a href="#">删除</a></span>
+                                        <span><a href="#">新字段</a></span>
+
+                                        <span><a href="#">刷新</a></span>
+                                        <span><a href="#">文本</a></span>
+                                        <span><a href="#">复制</a></span>
+                                        <span><a href="#">复制</a></span>
+                                    </p>
+                                    <p class="van-coll-table-ys">
+                                        <input type="text" value='{
+                                          "kind": "Other Rabbits",
+                                          "number": "9912",
+                                          "char": "#",
+                                          "tag": "other rabbits",
+                                          "parent_number": "12",
+                                          "cn_name": "",
+                                          "desc": "Other rabbits as pets.\r\n"
+                                        }'>
+
+                                    </p>
+
+                                    <div class="van-coll-table-json">
+                                        <p class="k">{</p>
+
+                                        <p class="v">
+                                            <span class="key">"_id"</span>
+                                            <span class="mh">:</span>
+                                            <span class="type">ObjectId(</span>
+                                            <span class="val">"543650c3a5e7360f934323ae"</span>
+                                            <span class="type">)</span>
+                                        </p>
+                                        <p class="v">
+                                            <span class="key">"title"</span>
+                                            <span class="mh">:</span>
+                                            <span class="val">"用户统计"</span>
+                                        </p>
+                                        <p class="v">
+                                            <span class="key">"url"</span>
+                                            <span class="mh">:</span>
+                                            <span class="val">"/monitor/user"</span>
+                                        </p>
+                                        <p class="v">
+                                            <span class="key">"type"</span>
+                                            <span class="mh">:</span>
+                                            <span class="type">NumberInt(</span>
+                                            <span class="val">2</span>
+                                            <span class="type">)</span>
+                                        </p>
+
+
+                                        <p class="k">}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% end %}
+
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
+
+
     </div>
 </div>
 

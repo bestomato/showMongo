@@ -15,13 +15,13 @@
 
         {% for i in leftmenu %}
             <li class="van-db">
-                <a href="/dbs" target="right">{{ i['name'] }}
+                <a href="/dbs?db={{ i['name'] }}" target="right">{{ i['name'] }}
                     {% if i['count'] == 0 %}{% else %} ({{ i['count'] }}){% end %}
                 </a>
             </li>
             <li class="van-db-table">
                 {% for l in i['last'] %}
-                    <a href="/coll" target="right">
+                    <a href="/coll?db={{ i['name'] }}&coll={{ l }}" target="right">
                         {{ l }}
                     </a>
                 {% end %}

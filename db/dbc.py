@@ -69,6 +69,12 @@ class BaseModel(BaseBaseModel):
         return self.database
 
     def getAccount(self, db='', ac=''):
+        """
+        获取集合连接句柄
+        :param db:库名
+        :param ac:集合名
+        :return:集合对象
+        """
         if db:
             self.selectDB(db)
         if ac:
