@@ -1,0 +1,58 @@
+{% extends "../public/base.html" %}
+
+{% block main %}
+
+ <div class="pure-g" >
+     <div class="pure-u-1-1" >
+
+        <form class="pure-form m-header-form" method="post" action="">
+            <fieldset>
+                <legend>
+                    <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                        <ul>
+                            <li class=""><a href="#">统计</a></li>
+                            <li><a href="/coll/creat?db={{ context['db'] }}">创建集合</a></li>
+                            <li><a href="#">命令</a></li>
+                            <li><a href="#">代码执行</a></li>
+                            <li><a href="#">克隆</a></li>
+                            <li><a href="#">导入</a></li>
+                            <li><a href="#">导出</a></li>
+                            <li><a href="#">调试信息</a></li>
+                            <li><a href="#">修复</a></li>
+                            <li><a href="#">用户</a></li>
+                            <li><a href="/coll/delete?db={{ context['db'] }}">删除</a></li>
+                        </ul>
+                    </div>
+                </legend>
+            </fieldset>
+        </form>
+     </div>
+ </div>
+
+<div class="pure-g" >
+    <div class="pure-u-1-1" >
+        <div>
+
+            <table class="pure-table  pure-table-bordered van-float">
+                <thead>
+                    <tr>
+                        <th colspan="2">Database Statistics</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            Size
+                        </td>
+
+                        <td>80MB</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% end %}

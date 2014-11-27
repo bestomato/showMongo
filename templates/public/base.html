@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="{{ static_url('css/pure-min.css') }}" rel="stylesheet" >
+    <link href="{{ static_url('css/show.css') }}" rel="stylesheet" >
+    <link href="{{ static_url('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" >
+
+    <title>Show Mongo</title>
+
+    {% block head %}
+    {% end %}
+
+</head>
+<body>
+
+    <div id="layout">
+        <div>
+            {% block menu %}
+
+            {% end %}
+        </div>
+
+        <div id="main">
+            {% block main %}
+
+            {% end %}
+        </div>
+    </div>
+
+    <script src="{{ static_url('js/jquery-1.9.1.min.js', v=1) }}" ></script>
+    <script src="{{ static_url('js/sweet-alert.min.js') }}"></script>
+    <script src="{{ static_url('js/show.min.js') }}" ></script>
+
+
+{% block script %}
+{% end %}
+
+</body>
+</html>

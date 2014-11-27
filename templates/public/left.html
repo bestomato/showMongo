@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    body{background-color:#efefef;border-right: 1px solid #efefef;padding-bottom:30px;}
+</style>
+{% end %}
+
+{% block menu %}
+<div class="van-left" style="border:0;">
+    <ul>
+        <li class="van-menu-heading">
+            <a href="/home/dbs" target="right">SHOW MONGO</a>
+        </li>
+
+        {% for i in leftmenu %}
+            <li class="van-db">
+                <a href="/dbs?db={{ i['name'] }}" target="right">{{ i['name'] }}
+                    {% if i['count'] == 0 %}{% else %} ({{ i['count'] }}){% end %}
+                </a>
+            </li>
+            <li class="van-db-table">
+                {% for l in i['last'] %}
+                    <a class="left-coll" href="/coll?db={{ i['name'] }}&coll={{ l }}" target="right">
+                        {{ l }}
+                    </a>
+                {% end %}
+            </li>
+        {% end %}
+
+    </ul>
+</div>
+{% end %}
