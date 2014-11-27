@@ -9,7 +9,6 @@
                 <legend>
                     <div class="pure-menu pure-menu-open pure-menu-horizontal">
                         <ul>
-                            <li class=""><a href="#">查询[Array|JSON]</a></li>
                             <li><a href="#">History</a></li>
                             <li><a href="#">刷新</a></li>
                             <li><a href="#">插入</a></li>
@@ -28,12 +27,43 @@
                         </ul>
                     </div>
                 </legend>
-                <textarea style="height:160px;" cols="70" rows="10">{
-                }</textarea>
             </fieldset>
         </form>
      </div>
  </div>
+
+<div class="pure-g" >
+    <div class="pure-u-1-1" >
+        <div>
+            <form class="pure-form m-header-form" method="get" action="/coll?db={{ dbs_value }}&coll={{ coll_value }}">
+
+                {% if query_status == 'error' %}
+                <p class="query-info-sign">查询条件有误</p>
+                {% end %}
+
+                {% if query %}
+                    {% if query_status == 'error' %}
+                        <textarea class="query-info-sign" style="height:150px;" cols="70" name="query">{{ query }}</textarea>
+                    {% else %}
+                        <textarea style="height:150px;" cols="70" name="query">{{ query }}</textarea>
+                    {% end %}
+
+                {% else %}
+                <textarea style="height:150px;" cols="70" name="query">{
+                    {{ hh }}
+                }</textarea>
+                {% end %}
+
+                <fieldset>
+                    <input class="pure-button" type="reset" value="清空"/>
+                    <input class="button-secondary pure-button" type="submit" value="查询"/>
+                    <!--<button class="pure-button">清空</button>-->
+                    <!--<button class="button-secondary pure-button">查询</button>-->
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="pure-g" >
     <div class="pure-u-1-1" >
@@ -53,61 +83,60 @@
                 <table class="van-coll-table">
                     <tbody>
                         {% for i in d %}
-                        <tr>
-                            <td class="van-coll-table-td-num">#1</td>
+                        <tr id="tr-coll-{{ i['arr'].get('_id') }}">
+                            <td class="van-coll-table-td-num">#{{ i['s'] }}</td>
                             <td class="van-coll-table-td-data">
                                 <div>
 
                                     <p class="van-coll-table-cz">
                                         <span><a href="#">更新</a></span>
-                                        <span><a href="#">删除</a></span>
+                                        <span><a class="delete-coll-data" href="#" data-div="tr-coll-{{ i['arr'].get('_id') }}" data-href="/coll/delete?db={{ dbs_value }}&coll={{ coll_value }}&id={{ i['arr'].get('_id') }}">删除</a></span>
                                         <span><a href="#">新字段</a></span>
-
                                         <span><a href="#">刷新</a></span>
                                         <span><a href="#">文本</a></span>
                                         <span><a href="#">复制</a></span>
-                                        <span><a href="#">复制</a></span>
                                     </p>
                                     <p class="van-coll-table-ys">
-                                        <input type="text" value='{
-                                          "kind": "Other Rabbits",
-                                          "number": "9912",
-                                          "char": "#",
-                                          "tag": "other rabbits",
-                                          "parent_number": "12",
-                                          "cn_name": "",
-                                          "desc": "Other rabbits as pets.\r\n"
-                                        }'>
+                                        <input type="text" value="{{ i['str'] }}">
 
                                     </p>
 
                                     <div class="van-coll-table-json">
                                         <p class="k">{</p>
 
-                                        <p class="v">
-                                            <span class="key">"_id"</span>
-                                            <span class="mh">:</span>
-                                            <span class="type">ObjectId(</span>
-                                            <span class="val">"543650c3a5e7360f934323ae"</span>
-                                            <span class="type">)</span>
-                                        </p>
-                                        <p class="v">
-                                            <span class="key">"title"</span>
-                                            <span class="mh">:</span>
-                                            <span class="val">"用户统计"</span>
-                                        </p>
-                                        <p class="v">
-                                            <span class="key">"url"</span>
-                                            <span class="mh">:</span>
-                                            <span class="val">"/monitor/user"</span>
-                                        </p>
-                                        <p class="v">
-                                            <span class="key">"type"</span>
-                                            <span class="mh">:</span>
-                                            <span class="type">NumberInt(</span>
-                                            <span class="val">2</span>
-                                            <span class="type">)</span>
-                                        </p>
+                                        {% for j in i['arr'] %}
+                                            <p class="v">
+                                                <span class="key">"{{ j }}"</span>
+                                                <span class="mh">:</span>
+                                                <span class="val">{{ i['arr'][j] }}</span>
+                                            </p>
+                                        {% end %}
+
+
+                                        <!--<p class="v">-->
+                                            <!--<span class="key">"_id"</span>-->
+                                            <!--<span class="mh">:</span>-->
+                                            <!--<span class="type">ObjectId(</span>-->
+                                            <!--<span class="val">"543650c3a5e7360f934323ae"</span>-->
+                                            <!--<span class="type">)</span>-->
+                                        <!--</p>-->
+                                        <!--<p class="v">-->
+                                            <!--<span class="key">"title"</span>-->
+                                            <!--<span class="mh">:</span>-->
+                                            <!--<span class="val">"用户统计"</span>-->
+                                        <!--</p>-->
+                                        <!--<p class="v">-->
+                                            <!--<span class="key">"url"</span>-->
+                                            <!--<span class="mh">:</span>-->
+                                            <!--<span class="val">"/monitor/user"</span>-->
+                                        <!--</p>-->
+                                        <!--<p class="v">-->
+                                            <!--<span class="key">"type"</span>-->
+                                            <!--<span class="mh">:</span>-->
+                                            <!--<span class="type">NumberInt(</span>-->
+                                            <!--<span class="val">2</span>-->
+                                            <!--<span class="type">)</span>-->
+                                        <!--</p>-->
 
 
                                         <p class="k">}
@@ -124,10 +153,45 @@
                 </table>
             </div>
 
+            {{ pageHtml}}
         </div>
 
 
     </div>
 </div>
 
+{% end %}
+
+
+{% block script %}
+<script>
+// 删除数据
+var coll=$(".delete-coll-data");
+coll.on("click", function(){
+    var div=$(this).attr("data-div");
+    var url=$(this).attr("data-href");
+
+    swal({
+            title: "您确定要删除么?",
+            text: "",
+            type: "warning",
+            cancelButtonText: "取消",
+            showCancelButton: true,
+            showButtonText: '确定',
+            confirmButtonColor: '#ca3c3c',
+            confirmButtonText: '确定',
+            closeOnConfirm: false
+        },
+        function(){
+            $.get(url, function(data){
+                if(data.data == 'yes'){
+                    swal('删除成功','','success');
+                    $("#"+div).slideUp("fast");
+                }
+            });
+        }
+    );
+
+});
+</script>
 {% end %}

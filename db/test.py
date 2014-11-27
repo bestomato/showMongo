@@ -1,16 +1,7 @@
 # -*- coding:utf-8 -*-
 
-import os
+import dbc
 
-from pymongo import MongoReplicaSetClient
-from pymongo import MongoClient
-import gridfs
+print dbc.BaseModel().getDdataBaseName()
 
-import setting
-
-if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), '__test__')):
-    mc = MongoClient(host='localhost')
-    mc.slave_okay = True
-else:
-    mc = MongoReplicaSetClient(host=','.join(setting.HOSTS), replicaSet=setting.REPL_SET_NAME)
 

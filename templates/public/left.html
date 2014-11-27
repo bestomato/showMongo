@@ -21,7 +21,7 @@
             </li>
             <li class="van-db-table">
                 {% for l in i['last'] %}
-                    <a href="/coll?db={{ i['name'] }}&coll={{ l }}" target="right">
+                    <a class="left-coll" href="/coll?db={{ i['name'] }}&coll={{ l }}" target="right">
                         {{ l }}
                     </a>
                 {% end %}

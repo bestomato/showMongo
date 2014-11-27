@@ -27,16 +27,34 @@ class HomeHandler(BaseHandler):
         if page > 1:
             skip = (page - 1) * self.page_num_data
 
-
         query_status = 'success'
         if self._params['query']:
             value_str = self._params['query']
+
             try:
-                # json_str = json.loads(value_str)
-                query = eval(value_str)
+                value_str.strip()
+                json_str = json.loads(value_str)
+
+                if json_str != {}:
+                    query = json_str
+                else:
+                    query = dict()
+
+                # query = eval(json_str)
                 # print query
                 # if types(query) == types(dict()):
                 #     pass
+
+                # query = dict()
+                #
+                # value_str.strip()
+                # value_str[1:-1]
+                # value_str_list = value_str.split(',')
+                # for i in value_str_list:
+                #     i.strip()
+                #     value_str_list_i = i.split(':')
+                #
+                #     query[]
 
 
             except Exception as e:
@@ -47,8 +65,8 @@ class HomeHandler(BaseHandler):
             query = dict()
 
 
-        collArr = self._coll.find().limit(self.page_num_data).skip(skip).sort('_id',-1)
-        count = self._coll.find().count() - skip
+        collArr = self._coll.find(query).limit(self.page_num_data).skip(skip).sort('_id',-1)
+        count = self._coll.find(query).count() - skip
 
         result = []
         for i in collArr:
