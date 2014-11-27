@@ -45,6 +45,8 @@ class BaseBaseHandler(tornado.web.RequestHandler):
         super(BaseBaseHandler, self).render(('%s%s') % (self.template_path, template_name),
             context=self.context,
             leftmenu=self.leftmenu,
+            dbs_value=self._dbs_value,
+            coll_value=self._coll_value,
             **kwargs)
 
     def sort_by(self, sort):
@@ -188,6 +190,8 @@ class BaseHandler(BaseBaseHandler):
     # 这里是成员变量定义,必须放到这个地方,继承不到
     _db = None
     _coll = None
+    _dbs_value = None
+    _coll_value = None
 
 
     def initialize(self):
@@ -196,6 +200,11 @@ class BaseHandler(BaseBaseHandler):
 
         self.get_data_base_conn()
         self.get_coll_conn()
+
+        self._dbs_value = self._params['db']
+        self._coll_value = self._params['coll']
+
+
 
     def get_context(self):
         context = super(BaseHandler, self).get_context()
@@ -275,7 +284,6 @@ class BaseHandler(BaseBaseHandler):
 
     def prepare(self):
         self.leftmenu = self.get_left_base()
-
 
 ##########################################################################
 
