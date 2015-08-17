@@ -292,11 +292,13 @@ class BaseHandler(BaseBaseHandler):
 
     def get_left_base(self):
         db = model.getDdataBaseName()
+        db = sorted(db)
+
         menu = []
         for i in db:
             l =  list(model.getCollectionsName(i))
             menu.append({'name':i, 'last':sorted(l),'count':len(l)})
-        return sorted(menu)
+        return menu
 
     def get_data_base_conn(self):
         self._dbs = model.getDataBase(self._params['db'])

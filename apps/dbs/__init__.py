@@ -7,5 +7,11 @@ prefix = '/dbs'
 urls = [
     # comments
     ('', app.HomeHandler),
+    ('/left', app.HomeLeftHandler),
+    ('/dbs', app.DbListHandler),
+
+
+
+    ('/add', app.AddDbsHandler),
 
 ]
