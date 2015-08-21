@@ -5,6 +5,7 @@ INSTALLED_APPS = (
     'home',
     'dbs',
     'collection',
+    'record',
 )
 
 #  static file config

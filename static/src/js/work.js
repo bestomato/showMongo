@@ -1,17 +1,4 @@
-var db=$(".van-db")
-db.on("click", function(){
-    $(this).next("li").slideToggle("fast");
-});
-
-
-$(".left-coll").on("click", function(){
-    $(".left-coll").css({ "color":"#444"});
-    $(this).css({"color":"#3d92c9"});
-    return true;
-});
-
-
-;// 删除数据
+// 删除数据
 var coll=$(".delete-coll-data");
 coll.on("click", function(){
     var div=$(this).attr("data-div");

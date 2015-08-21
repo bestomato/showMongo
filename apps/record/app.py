@@ -2,7 +2,7 @@
 
 import types
 import json
-
+from bson.objectid import ObjectId
 from base import BaseHandler
 from setting import (TEMPLATE_PATH as _TEMPLATE_PATH)
 
@@ -95,15 +95,71 @@ class HomeHandler(BaseHandler):
         self.render('index.html',
                     pageHtml=pageHtml,
                     query=value_str,
+                    query_status=query_status,
+                    d=result)
+
+
+class RecordAddHandler(BaseHandler):
+
+    _post_params = {
+            'option':[
+                ('query', basestring, ''),
+                ('db', basestring, ''),
+                ('coll', basestring, ''),
+            ]
+        }
+
+    _get_params = {
+            'option':[
+                ('query_status', basestring, ''),
+                ('query', basestring, ''),
+                ('db', basestring, ''),
+                ('coll', basestring, ''),
+            ]
+        }
+
+
+    def get(self):
+        self.render('add.html',
+                    query='',
+                    query_status='')
+
+    def post(self):
+        query_str = ''
+        query_status = ''
+
+        query = None
+        value_str = self._params['query']
+        try:
+            value_str.strip()
+            json_str = json.loads(value_str)
+
+            if json_str != {}:
+                query = json_str
+
+        except Exception as e:
+            print e
+            query_status = 'error'
+
+        if query:
+            if self._coll.insert(query):
+                self.redirect('/record?db=%s&coll=%s' % (self._dbs_value, self._coll_value))
+
+        else:
+            query_status = 'error'
+
+        self.render('add.html',
+                    query=query_str,
                     query_status=query_status)
 
 
-class CollDeleteHandler(BaseHandler):
+class RecordDeleteHandler(BaseHandler):
 
     _get_params = {
             'option':[
                 ('db', basestring, ''),
                 ('coll', basestring, ''),
+                ('id', basestring, ''),
             ]
         }
 
@@ -119,43 +175,67 @@ class CollDeleteHandler(BaseHandler):
                 self.write({"data":"no"})
 
 
-class CollClearHandler(BaseHandler):
+class RecordRestHandler(BaseHandler):
+
+    _post_params = {
+            'option':[
+                ('query', basestring, ''),
+                ('db', basestring, ''),
+                ('coll', basestring, ''),
+                ('id', basestring, ''),
+            ]
+        }
 
     _get_params = {
             'option':[
+                ('query_status', basestring, ''),
+                ('query', basestring, ''),
                 ('db', basestring, ''),
                 ('coll', basestring, ''),
+                ('id', basestring, ''),
             ]
         }
 
 
     def get(self):
-        end = self._coll.remove()
-        if end:
-            self.write({"data":"yes"})
+        data = self._coll.find_one({"_id":ObjectId(self._params['id'])})
+        # for i in data:
+        #     if isinstance(data[i], ObjectId):
+        #         data[i] = str(data[i])
+        #
+        # data = json.dumps(data, ensure_ascii=False)
+
+        self.render('up.html',
+                    query=sorted(data),
+                    query_status='')
+
+    def post(self):
+        query_str = ''
+        query_status = ''
+
+        query = None
+        value_str = self._params['query']
+        try:
+            value_str.strip()
+            json_str = json.loads(value_str)
+
+            if json_str != {}:
+                query = json_str
+
+        except Exception as e:
+            print e
+            query_status = 'error'
+
+        if query:
+            if self._coll.insert(query):
+                self.redirect('/record?db=%s&coll=%s' % (self._dbs_value, self._coll_value))
+
         else:
-            self.write({"data":"no"})
+            query_status = 'error'
 
-
-
-class CollStatisticsHandler(BaseHandler):
-
-    _get_params = {
-            'option':[
-                ('db', basestring, ''),
-                ('coll', basestring, ''),
-            ]
-        }
-
-
-    def get(self):
-
-
-        self.render('tongji.html', data=[])
-
-
-
-
+        self.render('up.html',
+                    query=query_str,
+                    query_status=query_status)
 
 
 

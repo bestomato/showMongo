@@ -1,0 +1,41 @@
+{% extends "../public/base.html" %}
+
+{% block main %}
+
+{% include "../public/record_header.html" %}
+
+<div class="pure-g" >
+    <div class="pure-u-1-1" >
+        <div>
+            <form class="pure-form m-header-form" method="post" action="/record/add?db={{ dbs_value }}&coll={{ coll_value }}">
+
+                {% if query_status == 'error' %}
+                <p class="query-info-sign">请输入数据</p>
+                {% end %}
+
+                {% if query %}
+                    {% if query_status == 'error' %}
+                        <textarea class="query-info-sign" style="height:150px;" cols="70" name="query">{{ query }}</textarea>
+                    {% else %}
+                        <textarea style="height:150px;" cols="70" name="query">{{ query }}</textarea>
+                    {% end %}
+
+                {% else %}
+                <textarea style="height:150px;" cols="70" name="query">{
+                    {{ hh }}
+                }</textarea>
+                {% end %}
+
+                <fieldset>
+                    <input class="pure-button" type="reset" value="清空"/>
+                    <input class="button-secondary pure-button" type="submit" value="提交"/>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% end %}
+
+

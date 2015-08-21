@@ -47,6 +47,7 @@ class BaseBaseHandler(tornado.web.RequestHandler):
             leftmenu=self.leftmenu,
             dbs_value=self._dbs_value,
             coll_value=self._coll_value,
+            hh='\r\n\r\n\r\n\r\n',
             **kwargs)
 
     def sort_by(self, sort):

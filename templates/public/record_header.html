@@ -1,0 +1,37 @@
+ <div class="pure-g" >
+     <div class="pure-u-1-1" >
+        <form class="pure-form m-header-form" method="post" action="">
+            <fieldset>
+                <legend>
+                    <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                        <ul>
+                            <li><a href="#">History</a></li>
+                            <li><a href="/record?db={{ dbs_value }}&coll={{ coll_value }}">刷新</a></li>
+                            <li><a href="/record/add?db={{ dbs_value }}&coll={{ coll_value }}">插入</a></li>
+                            <li><a data-href="/coll/clear?db={{ dbs_value }}&coll={{ coll_value }}" class="clear_coll" href="javascript:void(0);">清空</a></li>
+                            <li><a href="#">新字段</a></li>
+                            <li><a href="/coll/statistics?db={{ dbs_value }}&coll={{ coll_value }}">统计</a></li>
+                            <li><a href="#">导出</a></li>
+                            <li><a href="#">导入</a></li>
+                            <li><a href="#">属性</a></li>
+                            <li><a href="#">索引</a></li>
+                            <li><a href="#">更名</a></li>
+                            <li><a href="#">复制</a></li>
+                            <li><a href="#">克隆</a></li>
+                            <li><a href="#">校验</a></li>
+                            <li><a href="#">删除</a></li>
+                        </ul>
+                    </div>
+                </legend>
+            </fieldset>
+        </form>
+     </div>
+ </div>
+
+
+{% block script %}
+<script>
+
+
+</script>
+{% end %}

@@ -8,5 +8,7 @@ urls = [
     # comments
     ('', app.HomeHandler),
     ('/delete', app.CollDeleteHandler),
+    ('/clear', app.CollClearHandler),
+    ('/statistics', app.CollStatisticsHandler),
 
 ]
