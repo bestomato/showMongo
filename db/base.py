@@ -6,12 +6,8 @@ import functools
 
 from bson.objectid import ObjectId
 from pymongo import ASCENDING, DESCENDING
+from utils import escape as _es
 
-import loggers
-
-from utils import escape as _es 
-
-# logger = loggers.getLogger(__file__)
 
 class Record(dict):
     """a dict object to replace default mongodb record

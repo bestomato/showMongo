@@ -1,36 +1,22 @@
 #-*- coding:utf-8 -*-
 
-import logging
-import re
-
 from datetime import  datetime
-
 import tornado.web
 import tornado.escape
 
 from pymongo import ASCENDING, DESCENDING
 from bson.objectid import ObjectId
-
 from settings import CDN as _CDN
-import loggers
-
-# logger = loggers.getLogger(__file__)
-
 from utils import (escape as _es, httputil as _ht)
-
 from db import dbc
 
 model = dbc.BaseModel()
 
 
-
 class BaseBaseHandler(tornado.web.RequestHandler):
 
 
-
-
     _types = [ObjectId, None, basestring, int, float, list, file]
-
 
 
     def initialize(self):
