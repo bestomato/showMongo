@@ -143,6 +143,7 @@ class BaseBaseModel(object):
 
     def update(self, spec, document, multi=False, **kwargs):
         """collection update method
+        :rtype: object
         
         """
         return self.__collect.update(spec, document, multi=multi, **kwargs)
